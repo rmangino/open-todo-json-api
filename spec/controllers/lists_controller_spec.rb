@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ListsController, type: :controller do
 
+  it_behaves_like "api_controller"
+
   # This should return the minimal set of attributes required to create a valid
   # List. As you add validations to List, be sure to adjust the attributes here as well.
   let(:valid_attributes) {
