@@ -13,6 +13,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.user = current_user
 
     if @list.save
       render json: @list, status: :created, location: @list

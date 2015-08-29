@@ -2,7 +2,17 @@ require 'rails_helper'
 
 RSpec.describe ListsController, type: :controller do
 
+  before do
+    user = User.create(email: "user@example.com", password: "password")
+    authentication_token = AuthenticationToken.create(user_id: user.id,
+                                                      body: "token",
+                                                      last_used_at: DateTime.current)
+    request.env["HTTP_X_USER_EMAIL"] = user.email
+    request.env["HTTP_X_AUTH_TOKEN"] = authentication_token.body
+  end
+
   it_behaves_like "api_controller"
+  it_behaves_like "authenticated_api_controller"
 
   # This should return the minimal set of attributes required to create a valid
   # List. As you add validations to List, be sure to adjust the attributes here as well.
@@ -19,6 +29,7 @@ RSpec.describe ListsController, type: :controller do
   describe "GET #index" do
     it "assigns all lists as @lists" do
       get :index, { format: :json }
+
       expect(assigns(:lists)).to eq([list])
     end
   end
@@ -26,6 +37,7 @@ RSpec.describe ListsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested list as @list" do
       get :show, { id: list.id, format: :json }
+
       expect(assigns(:list)).to eq(list)
     end
   end
@@ -40,6 +52,7 @@ RSpec.describe ListsController, type: :controller do
 
       it "assigns a newly created list as @list" do
         post :create, { list: valid_attributes, format: :json  }
+
         expect(assigns(:list)).to be_a(List)
         expect(assigns(:list)).to be_persisted
       end
@@ -48,11 +61,13 @@ RSpec.describe ListsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved list as @List" do
         post :create, { list: invalid_attributes, format: :json  }
+
         expect(assigns(:list)).to be_a_new(List)
       end
 
       it "returns unprocessable_entity status" do
         put :create, { list: invalid_attributes }
+
         expect(response.status).to eq(422)
       end
     end
