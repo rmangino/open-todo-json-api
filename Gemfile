@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'rails-api'
-gem 'sqlite3'
 
 gem 'warden'  # Reaction Analytics
 
@@ -22,6 +21,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'awesome_print'
   gem 'meta_request'  # Required to use Chrome's RailsPanel extension
 
