@@ -15,10 +15,6 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'awesome_print'
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'meta_request'  # Required to use Chrome's RailsPanel extension
 end
 
 group :test do
@@ -26,5 +22,11 @@ group :test do
 end
 
 group :development, :test do
+  gem 'awesome_print'
+  gem 'meta_request'  # Required to use Chrome's RailsPanel extension
+
   gem 'rspec-rails', '~> 3.0'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-nav'
 end

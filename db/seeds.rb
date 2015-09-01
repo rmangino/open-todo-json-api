@@ -28,7 +28,13 @@ user = User.create(email: "admin@example.com", password: "password")
   { title: "List Title 3", user: user },
   { title: "List Title 4", user: user }
 ].each do |list_attributes|
-  List.create(list_attributes)
+
+  list = List.create(list_attributes)
+
+    4.times do |i|
+      list.items.create(title: "List item #{i+1}", complete: [true, false].sample)
+    end
+
 end
 
 ###############################################################################
@@ -38,3 +44,4 @@ end
 puts "Seed Finished"
 puts "#{User.count} Users created"
 puts "#{List.count} Lists created"
+puts "#{Item.count} Items created"

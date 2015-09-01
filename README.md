@@ -16,7 +16,7 @@ Interacting with the json api via curl:
 
 ### Get List
 
-```curl -i -X GET -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/9```
+```curl -i -X GET -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/1```
 
 ### Create a new List
 
@@ -24,8 +24,30 @@ Interacting with the json api via curl:
 
 ### Update an existing List
 
-```curl -i -X PUT -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" -d '{ "list": { "title": "updated list title"} }' http://localhost:3000/lists/19```
+```curl -i -X PUT -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" -d '{ "list": { "title": "updated list title"} }' http://localhost:3000/lists/1```
 
 ### Delete a List
 
-```curl -i -X DELETE -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/9```
+```curl -i -X DELETE -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/1```
+
+----
+
+### Get all Items for a given List
+
+```curl -i -X GET -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/1/items```
+
+### Get one Item from a given List
+
+```curl -i -X GET -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/1/items/1```
+
+### Create a new Item in an existing List
+
+```curl -i -X POST -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" -d '{ "item": { "title": "a new item", "complete": "false"} }' http://localhost:3000/lists/5/items```
+
+### Update an existing Item in a given List
+
+```curl -i -X PUT -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" -d '{ "item": { "title": "an updated item title"} }' http://localhost:3000/lists/1/items/1```
+
+### Delete an Item from a List
+
+```curl -i -X DELETE -H "Content-Type:application/json" -H "X-User-Email:admin@example.com" -H "X-Auth-Token:xxx" http://localhost:3000/lists/1/items/1```
