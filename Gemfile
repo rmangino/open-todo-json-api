@@ -30,3 +30,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
 end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
